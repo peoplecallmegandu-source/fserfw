@@ -1,0 +1,20 @@
+{
+  "name": "aurora-coffee-site",
+  "version": "1.0.0",
+  "description": "Aurora Coffee — modern, interactive coffee website built with Tailwind CSS and Node.js",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "lint": "echo \"No linter configured\""
+  },
+  "keywords": ["coffee","tailwind","express","roastery"],
+  "author": "Aurora Coffee",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
