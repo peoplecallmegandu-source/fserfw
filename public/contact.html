@@ -1,0 +1,107 @@
+<!--  -->
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:300,400,500,600,700&family=Playfair+Display:300,400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Contact Aurora Coffee for wholesale, partnerships, or just to say hello.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Contact — Aurora Coffee</title>
+  <style>
+    body{font-family:'Inter',sans-serif; background:linear-gradient(180deg,#05060a,#071028); color:#e6eef8;}
+    .glass{backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(255,255,255,0.04);} 
+  </style>
+</head>
+<body style="font-family: 'Inter', sans-serif;" class="w-full max-w-none">
+  <header class="w-full max-w-none p-6 flex items-center justify-between glass">
+    <a href="#" onclick="window.parent.handlePreviewNavigation(\'index.html\'); return false;" class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 text-black font-bold flex items-center justify-center">A</div>
+      <div>
+        <h2 class="font-bold">Aurora Coffee</h2>
+        <div class="text-xs text-amber-200/60">Roasted for the moment</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex gap-6">
+      <a href="#" onclick="window.parent.handlePreviewNavigation(\'index.html\'); return false;" class="hover:underline">Home</a>
+      <a href="#" onclick="window.parent.handlePreviewNavigation(\'about.html\'); return false;" class="hover:underline">About</a>
+    </nav>
+  </header>
+
+  <main class="w-full max-w-none px-6 sm:px-12 lg:px-20 py-12">
+    <h1 class="text-3xl font-bold">Contact Us</h1>
+    <p class="mt-2 text-amber-200/80">Questions? Wholesale inquiries? We’d love to hear from you.</p>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="glass p-6 rounded-2xl shadow-lg">
+        <h3 class="font-semibold">Send a message</h3>
+        <form id="contactForm" class="mt-4 flex flex-col gap-3" novalidate>
+          <input id="cname" type="text" required placeholder="Your full name" class="p-3 rounded-md glass" aria-label="Name">
+          <input id="cemail" type="email" required placeholder="Email address" class="p-3 rounded-md glass" aria-label="Email">
+          <input id="subject" type="text" placeholder="Subject" class="p-3 rounded-md glass">
+          <textarea id="message" rows="6" required placeholder="Your message" class="p-3 rounded-md glass"></textarea>
+          <div class="flex items-center gap-3">
+            <button type="submit" class="px-4 py-2 rounded-full bg-amber-400 text-black font-semibold">Send message</button>
+            <button type="button" id="clearForm" class="px-4 py-2 rounded-full glass">Clear</button>
+          </div>
+          <div id="contactStatus" class="text-sm text-amber-200/70 mt-2" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <aside class="glass p-6 rounded-2xl shadow-lg">
+        <h3 class="font-semibold">Visit or Wholesale</h3>
+        <p class="mt-2 text-amber-200/70">Aurora Roastery • 123 Bean Lane • Brewtown</p>
+        <p class="mt-2 text-amber-200/70">hello@auroracoffee.example</p>
+        <p class="mt-2 text-amber-200/70">(555) 012-COFFEE</p>
+
+        <div class="mt-6">
+          <h4 class="font-semibold">Wholesale</h4>
+          <p class="text-amber-200/70 mt-2">We partner with cafes and retailers. Tell us about your business size and volume needs.</p>
+        </div>
+
+        <div class="mt-6">
+          <h4 class="font-semibold">Follow</h4>
+          <div class="mt-3 flex gap-3">
+            <a href="#" class="p-2 rounded-full glass">IG</a>
+            <a href="#" class="p-2 rounded-full glass">FB</a>
+            <a href="#" class="p-2 rounded-full glass">TW</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <section class="mt-12 glass p-6 rounded-2xl shadow-lg">
+      <h3 class="font-semibold">Map</h3>
+      <div class="mt-4 w-full h-64 bg-black/30 rounded-lg flex items-center justify-center text-amber-200/60">Map placeholder</div>
+    </section>
+  </main>
+
+  <footer class="w-full max-w-none p-6 text-center text-amber-200/70">Back to <a href="#" onclick="window.parent.handlePreviewNavigation(\'index.html\'); return false;" class="underline">Home</a></footer>
+
+  <script>
+    // Basic validation and simulated API
+    const contactForm = document.getElementById('contactForm');
+    const contactStatus = document.getElementById('contactStatus');
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message){
+        contactStatus.textContent = 'Please complete name, email, and message.';
+        return;
+      }
+      contactStatus.textContent = 'Sending...';
+      setTimeout(()=>{
+        contactStatus.textContent = 'Message sent! We usually respond within 1–2 business days.';
+        contactForm.reset();
+      }, 800);
+    });
+
+    document.getElementById('clearForm').addEventListener('click', ()=> contactForm.reset());
+  </script>
+</body>
+</html>
