@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: aurora-coffee
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: ""
+    startCommand: "node server/index.js"
+    envVars:
+      - key: NODE_ENV
+        value: production
