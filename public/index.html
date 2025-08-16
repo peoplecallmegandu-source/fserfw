@@ -1,0 +1,523 @@
+<!--   -->
+<!doctype html>
+<html lang="en" class="scroll-smooth" data-theme="light">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:300,400,500,600,700&family=Playfair+Display:300,400,500,600,700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Aurora Coffee — Artisanal coffee, ethically sourced, roasted with care. Experience the story in every cup.">
+  <meta property="og:title" content="Aurora Coffee — Taste the Story">
+  <meta property="og:description" content="Small-batch roasts, direct-trade beans, fast shipping. Join the coffee revolution.">
+  <meta property="og:image" content="https://pixabay.com/get/g17ad22982ed8f031e1d5a986a15eafdbe29c941f4622d5d3e7e7fb7405713e982f4e636aa95684a884d4d1a10f2b077026c2f7bd4bcb7c650dc981b7fc0f5fdd_640.jpg">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Aurora Coffee — Taste the Story</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220aa;
+      --glass: rgba(255,255,255,0.06);
+      --accent-1: #FF8A00; /* warm orange */
+      --accent-2: #FFC857; /* gold */
+      --text:#e6eef8;
+    }
+
+    [data-theme='dark']{
+      --bg:#05060a;
+      --card:#0b1220dd;
+      --glass: rgba(255,255,255,0.03);
+      --text:#e6eef8;
+    }
+
+    html,body{height:100%;}
+    body{
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg, rgba(12,18,30,1) 0%, rgba(2,6,12,1) 100%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Parallax layers */
+    .parallax{transform: translateZ(0); will-change: transform;}
+
+    /* Smooth theme transition */
+    .theme-transition{transition: background-color 400ms ease, color 400ms ease;}
+
+    /* Utility for glassmorphism */
+    .glass{backdrop-filter: blur(8px) saturate(120%); background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06);}
+
+    /* Reveal animations */
+    .reveal{opacity:0; transform: translateY(20px); transition: opacity 600ms ease, transform 600ms ease;}
+    .reveal.visible{opacity:1; transform: translateY(0);}
+
+    /* Keyboard focus */
+    a:focus, button:focus, input:focus {outline: 3px solid rgba(255,200,120,0.15); outline-offset: 2px;}
+  </style>
+</head>
+<body style="font-family: 'Inter', sans-serif;" class="w-full max-w-none min-h-screen overflow-x-hidden theme-transition" aria-label="Aurora Coffee - Home">
+  <!-- Floating loading skeleton (initial skeleton) -->
+  <div id="loader" class="fixed inset-0 flex items-center justify-center z-50 bg-gradient-to-b from-black/70 to-transparent">
+    <div class="w-80 h-6 rounded-full glass animate-pulse"></div>
+  </div>
+
+  <!-- NAV -->
+  <header class="w-full max-w-none fixed top-4 left-0 right-0 z-40 px-6 sm:px-12 lg:px-20">
+    <nav class="w-full max-w-none flex items-center justify-between glass rounded-full py-3 px-4 shadow-lg backdrop-blur-md">
+      <a href="#" onclick="window.parent.handlePreviewNavigation(\'index.html\'); return false;" class="flex items-center gap-3" aria-label="Aurora Coffee - Home">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-br from-amber-400 to-orange-600 text-black font-bold shadow-md">A</div>
+        <div class="hidden sm:block">
+          <h1 class="text-white font-bold leading-none" style="font-family: 'Playfair Display', serif;">Aurora Coffee</h1>
+          <p class="text-xs text-amber-200/70 -mt-1">Roasted for the moment</p>
+        </div>
+      </a>
+
+      <ul class="hidden md:flex items-center gap-6 text-sm font-medium text-amber-50/90">
+        <li><a class="nav-link hover:scale-105 transition-transform" href="#" onclick="window.parent.handlePreviewNavigation(\'index.html\'); return false;">Home</a></li>
+        <li><a class="nav-link hover:scale-105 transition-transform" href="#" onclick="window.parent.handlePreviewNavigation(\'about.html\'); return false;">About</a></li>
+        <li><a class="nav-link hover:scale-105 transition-transform" href="#" onclick="window.parent.handlePreviewNavigation(\'contact.html\'); return false;">Contact</a></li>
+        <li><a class="nav-link hover:scale-105 transition-transform" href="#shop">Shop</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="p-2 rounded-md glass hover:scale-105 transition-transform" aria-label="Toggle theme">🌗</button>
+        <button id="ctaLaunch" class="bg-gradient-to-r from-amber-400 to-orange-600 text-black font-semibold py-2 px-4 rounded-full shadow-md hover:brightness-105 focus:ring-2 ring-amber-300" aria-haspopup="dialog">Join the Collective</button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <main class="w-full max-w-none overflow-hidden">
+    <section id="hero" class="w-full relative flex items-center justify-center h-screen md:h-[92vh]">
+      <div class="absolute inset-0 -z-10">
+        <img src="https://images.unsplash.com/photo-1640476257526-661f5a2cba5f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw1fHxhJTIwaGlnaC1yZXNvbHV0aW9uJTIwd2lkZS1hbmdsZSUyMG1vcm5pbmclMjBjYWYlQzMlQTklMjBzY2VuZSUyMHdpdGglMjB3YXJtJTIwbGlnaHQlMkMlMjBzdGVhbSUyMHJpc2luZyUyMGZyb20lMjBhJTIwY3VwJTJDJTIwYmx1cnJlZCUyMGJhY2tncm91bmR8ZW58MHwwfHx8MTc1NTMxNzkzMXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Steaming cup of coffee" class="w-full h-full object-cover parallax" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/60"></div>
+      </div>
+
+      <div class="w-full max-w-none px-6 sm:px-12 lg:px-20">
+        <div class="mx-auto w-full max-w-none text-center">
+          <div class="inline-block glass p-6 rounded-3xl shadow-2xl backdrop-blur-md reveal" style="max-width:900px;">
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight" style="font-family:'Playfair Display', serif;">Taste the Story in Every Cup</h2>
+            <p class="mt-4 text-lg sm:text-xl text-amber-50/90">From mountain to mug—direct-trade beans, roasted in small batches to preserve origin, clarity and soul. We craft coffee that connects people to place and purpose.</p>
+
+            <div class="mt-6 flex items-center justify-center gap-4">
+              <a href="#shop" class="inline-flex items-center gap-3 bg-gradient-to-r from-amber-400 to-orange-600 text-black px-6 py-3 rounded-full shadow-lg hover:scale-105 transform transition">Shop Small-Batch</a>
+              <a href="#" onclick="window.parent.handlePreviewNavigation(\'about.html\'); return false;" class="inline-flex items-center gap-2 border border-amber-200/25 text-amber-100 px-4 py-3 rounded-full glass hover:-translate-y-1 transition">Our Story</a>
+            </div>
+
+            <div class="mt-6 text-xs text-amber-200/60">Free shipping on first order • 100% satisfaction or your money back</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- subtle directional cue -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 text-amber-100/80 animate-bounce">⬇ Scroll</div>
+    </section>
+
+    <!-- FEATURES / WHY US -->
+    <section id="features" class="w-full max-w-none py-16 px-6 sm:px-12 lg:px-20">
+      <div class="mx-auto w-full max-w-none">
+        <div class="flex flex-col md:flex-row items-start gap-8">
+          <div class="flex-1 reveal glass p-6 rounded-2xl shadow-lg">
+            <h3 class="text-2xl font-semibold">Direct Trade Relationships</h3>
+            <p class="mt-2 text-amber-100/80">We pay farmers fairly and build relationships that last generations. Better coffee — better livelihoods.</p>
+            <div class="mt-4 flex gap-3">
+              <div class="w-2 h-8 bg-gradient-to-b from-amber-300 to-orange-600 rounded"></div>
+              <div class="flex-1">
+                <div class="text-sm text-amber-200/70">Ethical sourcing</div>
+                <div class="text-xs text-amber-100/60">Traceable lot info with every bag</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 reveal glass p-6 rounded-2xl shadow-lg">
+            <h3 class="text-2xl font-semibold">Small Batch Roasts</h3>
+            <p class="mt-2 text-amber-100/80">Every roast profile is tuned to highlight origin clarity — floral notes, chocolate depth, citrus brightness.</p>
+            <div class="mt-4 flex gap-3">
+              <div class="w-2 h-8 bg-gradient-to-b from-amber-300 to-orange-600 rounded"></div>
+              <div class="flex-1">
+                <div class="text-sm text-amber-200/70">Freshness guarantee</div>
+                <div class="text-xs text-amber-100/60">Roasted & shipped within 7 days</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 reveal glass p-6 rounded-2xl shadow-lg">
+            <h3 class="text-2xl font-semibold">Sustainable Packaging</h3>
+            <p class="mt-2 text-amber-100/80">Compostable bags, minimal waste, maximum flavor. We owe it to the planet and to future cups.</p>
+            <div class="mt-4 flex gap-3">
+              <div class="w-2 h-8 bg-gradient-to-b from-amber-300 to-orange-600 rounded"></div>
+              <div class="flex-1">
+                <div class="text-sm text-amber-200/70">Climate-aware</div>
+                <div class="text-xs text-amber-100/60">Offset programs available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP / PRODUCT CARDS -->
+    <section id="shop" class="w-full max-w-none py-16 px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-transparent to-black/40">
+      <div class="mx-auto w-full max-w-none">
+        <div class="flex items-center justify-between">
+          <h3 class="text-3xl font-bold">Featured Roasts</h3>
+          <div class="text-sm text-amber-200">Limited weekly drops • <span class="font-semibold">Only 48 bags left</span></div>
+        </div>
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Product Card -->
+          <article class="glass p-5 rounded-2xl shadow-lg reveal hover:scale-[1.02] transition-transform w-full max-w-none">
+            <img src="https://images.unsplash.com/photo-1698655123292-27d07e8f9754?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHwxMHx8Y2xvc2UtdXAlMjBvZiUyMHdob2xlJTIwY29mZmVlJTIwYmVhbnMlMjBzcGlsbGluZyUyMGZyb20lMjBhJTIwYnVybGFwJTIwc2FjayUyQyUyMHdhcm0lMjB0b25lc3xlbnwwfDB8fHwxNzU1MzE3OTMyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Single Origin Ethiopia" loading="lazy" class="w-full h-44 object-cover rounded-lg shadow-inner">
+            <h4 class="mt-4 font-semibold text-xl">Ethiopia — Yirgacheffe</h4>
+            <p class="mt-2 text-amber-100/80">Floral jasmine, bright lemon, silky body. Single-origin, light roast.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-lg font-bold">$18 / 250g</div>
+              <div class="flex items-center gap-2">
+                <button class="addCart px-3 py-2 rounded-full glass hover:bg-amber-400/20 transition" aria-label="Add Ethiopia to cart">Add</button>
+                <button class="viewMore px-3 py-2 rounded-full bg-amber-400 text-black font-semibold hover:brightness-95 transition" data-product="Ethiopia">Buy</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="glass p-5 rounded-2xl shadow-lg reveal hover:scale-[1.02] transition-transform">
+            <img src="https://images.pexels.com/photos/4349759/pexels-photo-4349759.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Colombia Medium" loading="lazy" class="w-full h-44 object-cover rounded-lg">
+            <h4 class="mt-4 font-semibold text-xl">Colombia — Medium Roast</h4>
+            <p class="mt-2 text-amber-100/80">Caramel sweetness, cocoa finish — versatile for both espresso and filter.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-lg font-bold">$16 / 250g</div>
+              <div class="flex items-center gap-2">
+                <button class="addCart px-3 py-2 rounded-full glass hover:bg-amber-400/20 transition">Add</button>
+                <button class="viewMore px-3 py-2 rounded-full bg-amber-400 text-black font-semibold" data-product="Colombia">Buy</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="glass p-5 rounded-2xl shadow-lg reveal hover:scale-[1.02] transition-transform">
+            <img src="https://images.unsplash.com/photo-1714871367054-7558607459bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHwxfHxkYXJrJTIwcm9hc3RlZCUyMGJlYW5zJTIwaW4lMjBhJTIwcnVzdGljJTIwYm93bCUyMHdpdGglMjBkZWVwJTIwY2hvY29sYXRlJTIwdG9uZXN8ZW58MHwwfHx8MTc1NTMxNzkzM3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="Sumatra Dark" loading="lazy" class="w-full h-44 object-cover rounded-lg">
+            <h4 class="mt-4 font-semibold text-xl">Sumatra — Dark Roast</h4>
+            <p class="mt-2 text-amber-100/80">Earthy, rich, with velvety body — the go-to for bold espresso lovers.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <div class="text-lg font-bold">$17 / 250g</div>
+              <div class="flex items-center gap-2">
+                <button class="addCart px-3 py-2 rounded-full glass hover:bg-amber-400/20 transition">Add</button>
+                <button class="viewMore px-3 py-2 rounded-full bg-amber-400 text-black font-semibold" data-product="Sumatra">Buy</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS + TRUST -->
+    <section id="social-proof" class="w-full max-w-none py-16 px-6 sm:px-12 lg:px-20">
+      <div class="mx-auto w-full max-w-none text-center">
+        <h3 class="text-3xl font-bold">Loved by coffee lovers worldwide</h3>
+        <p class="mt-2 text-amber-100/70">Real stories. Real flavor. Real impact.</p>
+
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <blockquote class="glass p-6 rounded-2xl shadow-lg reveal">
+            <p class="italic">"Finally found a roast that tastes like sunshine. The citrus notes popped in my Chemex and the bag lasted just long enough."</p>
+            <footer class="mt-4 text-sm font-semibold">— Maya R., Brooklyn</footer>
+          </blockquote>
+
+          <blockquote class="glass p-6 rounded-2xl shadow-lg reveal">
+            <p class="italic">"The farmers card in the bag made the coffee feel personal. Love the transparency and the taste."</p>
+            <footer class="mt-4 text-sm font-semibold">— Daniel S., Seattle</footer>
+          </blockquote>
+
+          <blockquote class="glass p-6 rounded-2xl shadow-lg reveal">
+            <p class="italic">"Great for espresso. Deep, chocolaty crema and none of the bitterness I used to expect from dark roasts."</p>
+            <footer class="mt-4 text-sm font-semibold">— Priya K., London</footer>
+          </blockquote>
+        </div>
+
+        <div class="mt-8 flex items-center justify-center gap-6">
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1588942458058-55beb017132c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw0fHxzbWFsbCUyMGNpcmN1bGFyJTIwYmFkZ2UlMjB0aGF0JTIwc2F5cyUyMCUyN0RpcmVjdCUyMHRyYWRlJTI3fGVufDB8MHx8fDE3NTUzMTc5MzR8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="badge" class="w-12 h-12 rounded-full">
+            <div class="text-left">
+              <div class="text-sm font-semibold">Direct Trade</div>
+              <div class="text-xs text-amber-200/70">Verified partners</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <img src="https://images.unsplash.com/photo-1644926054948-8c1155eeb0e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHw5fHxzbWFsbCUyMGNpcmN1bGFyJTIwYmFkZ2UlMjB0aGF0JTIwc2F5cyUyMCUyN1N1c3RhaW5hYmx5JTIwUGFja2VkJTI3fGVufDB8MHx8fDE3NTUzMTc5MzR8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="badge" class="w-12 h-12 rounded-full">
+            <div class="text-left">
+              <div class="text-sm font-semibold">Sustainable Packaging</div>
+              <div class="text-xs text-amber-200/70">Compostable bags</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ / Accordion -->
+    <section id="faq" class="w-full max-w-none py-16 px-6 sm:px-12 lg:px-20 bg-gradient-to-b from-transparent to-black/10">
+      <div class="mx-auto w-full max-w-none">
+        <h3 class="text-3xl font-bold">Frequently Asked</h3>
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div class="glass p-5 rounded-2xl shadow-lg">
+            <div class="faq-item">
+              <button class="faq-toggle w-full text-left flex items-center justify-between py-3" aria-expanded="false">
+                <span class="font-semibold">How fresh is my coffee?</span>
+                <span class="chev">➤</span>
+              </button>
+              <div class="faq-body text-amber-200/80 hidden">We roast in small batches and ship within 7 days. Each bag has roast date and origin details.</div>
+            </div>
+
+            <div class="mt-4 faq-item">
+              <button class="faq-toggle w-full text-left flex items-center justify-between py-3" aria-expanded="false">
+                <span class="font-semibold">Do you offer subscriptions?</span>
+                <span class="chev">➤</span>
+              </button>
+              <div class="faq-body text-amber-200/80 hidden">Yes — customize frequency, roast, and grind. Subscribers get exclusive early drops.</div>
+            </div>
+          </div>
+
+          <div class="glass p-5 rounded-2xl shadow-lg">
+            <div class="faq-item">
+              <button class="faq-toggle w-full text-left flex items-center justify-between py-3" aria-expanded="false">
+                <span class="font-semibold">What if I don’t like it?</span>
+                <span class="chev">➤</span>
+              </button>
+              <div class="faq-body text-amber-200/80 hidden">Our happiness guarantee: return unopened bags within 14 days for a full refund.</div>
+            </div>
+
+            <div class="mt-4 faq-item">
+              <button class="faq-toggle w-full text-left flex items-center justify-between py-3" aria-expanded="false">
+                <span class="font-semibold">Are beans traceable?</span>
+                <span class="chev">➤</span>
+              </button>
+              <div class="faq-body text-amber-200/80 hidden">Each bag includes farm details, altitude, varietal and the producer’s story.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA + GAMIFICATION PROGRESS -->
+    <section id="join" class="w-full max-w-none py-16 px-6 sm:px-12 lg:px-20">
+      <div class="mx-auto w-full max-w-none grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="glass p-8 rounded-2xl shadow-lg reveal">
+          <h3 class="text-3xl font-bold">Join the Roaster Collective</h3>
+          <p class="mt-2 text-amber-100/80">Sign up for early drops, tasting notes, and exclusive member-only roasts.</p>
+
+          <form id="signup" class="mt-6 flex flex-col gap-3" novalidate>
+            <input id="name" type="text" required placeholder="Your name" class="p-3 rounded-md glass" aria-label="Name">
+            <input id="email" type="email" required placeholder="Email address" class="p-3 rounded-md glass" aria-label="Email">
+            <div class="flex items-center gap-3">
+              <button type="submit" class="px-4 py-2 rounded-full bg-amber-400 text-black font-semibold">Get early access</button>
+              <button type="button" id="whyJoin" class="px-4 py-2 rounded-full glass">Why join?</button>
+            </div>
+
+            <div class="mt-4 text-sm text-amber-200/70">You’ll also track your "Tasting Journey" — a fun progress bar that unlocks perks.</div>
+
+            <div class="mt-4">
+              <div class="w-full bg-black/20 rounded-full h-3 glass overflow-hidden">
+                <div id="progressBar" class="h-3 bg-gradient-to-r from-amber-400 to-orange-600 w-0 transition-all"></div>
+              </div>
+              <div class="mt-2 text-xs text-amber-200/60">Progress: <span id="progressText">0%</span></div>
+            </div>
+          </form>
+        </div>
+
+        <div class="reveal">
+          <img src="https://images.unsplash.com/photo-1663958749441-926bbef7cd0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3ODkyNDZ8MHwxfHNlYXJjaHwyfHxjcmVhdGl2ZSUyMGZsYXRsYXklMjBvZiUyMGNvZmZlZSUyMGN1cHBpbmclMjBzZXR1cCUyMHdpdGglMjBzZW5zb3J5JTIwd2hlZWwlMjBhbmQlMjBzbWFsbCUyMGJvd2xzfGVufDB8MHx8fDE3NTUzMTc5MzV8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Coffee cupping flatlay" loading="lazy" class="w-full h-80 object-cover rounded-2xl shadow-lg">
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="w-full max-w-none py-10 px-6 sm:px-12 lg:px-20 bg-black/40">
+      <div class="mx-auto w-full max-w-none grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <h4 class="font-bold text-xl">Aurora Coffee</h4>
+          <p class="text-amber-200/70 mt-2">Hand-roasted. Ethically sourced. Delivered to your door.</p>
+        </div>
+
+        <div>
+          <h5 class="font-semibold">Navigate</h5>
+          <ul class="mt-3 text-amber-200/60">
+            <li><a href="#" onclick="window.parent.handlePreviewNavigation(\'about.html\'); return false;" class="hover:underline">About</a></li>
+            <li><a href="#" onclick="window.parent.handlePreviewNavigation(\'contact.html\'); return false;" class="hover:underline">Contact</a></li>
+            <li><a href="#shop" class="hover:underline">Shop</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h5 class="font-semibold">Contact</h5>
+          <p class="mt-3 text-amber-200/60">hello@auroracoffee.example</p>
+          <p class="text-amber-200/60">(555) 012-COFFEE</p>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center text-amber-200/60 text-sm">© <span id="year"></span> Aurora Coffee • Small-batch roasters • All rights reserved</div>
+    </footer>
+  </main>
+
+  <!-- MODAL (Sign-up / Buy) -->
+  <div id="modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60" role="dialog" aria-modal="true">
+    <div class="w-full max-w-none mx-6 md:mx-0 md:w-[720px] glass rounded-3xl p-6 relative">
+      <button id="modalClose" class="absolute right-4 top-4 text-amber-100">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Basic DOM helpers
+    const qs = (s, el = document) => el.querySelector(s);
+    const qsa = (s, el = document) => Array.from(el.querySelectorAll(s));
+
+    // Remove loader
+    window.addEventListener('load', () => {
+      setTimeout(()=>{
+        const loader = qs('#loader');
+        if(loader) loader.classList.add('opacity-0');
+        setTimeout(()=> loader?.remove(), 600);
+      }, 600);
+      qs('#year').textContent = new Date().getFullYear();
+    });
+
+    // Theme toggle
+    const themeToggle = qs('#themeToggle');
+    const root = document.documentElement;
+    function setTheme(theme){
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('aurora-theme', theme);
+    }
+    const saved = localStorage.getItem('aurora-theme') || 'dark';
+    setTheme(saved);
+    themeToggle.addEventListener('click', ()=>{
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+
+    // Scroll reveal + parallax
+    const revealElems = qsa('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(ent => {
+        if(ent.isIntersecting) ent.target.classList.add('visible');
+      });
+    }, {threshold: 0.12});
+    revealElems.forEach(el => io.observe(el));
+
+    // Parallax for hero image
+    const hero = qs('#hero');
+    window.addEventListener('scroll', ()=>{
+      const sc = window.scrollY;
+      const imgs = hero?.querySelectorAll('img.parallax');
+      imgs?.forEach(img => img.style.transform = `translateY(${sc * 0.15}px)`);
+    });
+
+    // FAQ accordion
+    qsa('.faq-toggle').forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        const parent = btn.parentElement;
+        const body = parent.querySelector('.faq-body');
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if(!expanded){
+          body.classList.remove('hidden');
+        } else { body.classList.add('hidden'); }
+      });
+    });
+
+    // Modal handling
+    const modal = qs('#modal');
+    const modalContent = qs('#modalContent');
+    const modalClose = qs('#modalClose');
+
+    function openModal(html){
+      modalContent.innerHTML = html;
+      modal.classList.remove('hidden');
+      setTimeout(()=> modal.classList.add('opacity-100'), 20);
+    }
+    function closeModal(){
+      modal.classList.add('hidden');
+    }
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
+
+    // CTA Launch: Show quick onboarding modal
+    qs('#ctaLaunch').addEventListener('click', ()=>{
+      openModal(`
+        <div class=\"p-2\"> 
+          <h3 class=\"text-2xl font-bold\">Join the Collective</h3>
+          <p class=\"mt-2 text-amber-100/80\">Get 10% off your first order and a free tasting guide.</p>
+          <form id=\"modalSignup\" class=\"mt-4 flex flex-col gap-3\">
+            <input id=\"mname\" class=\"p-3 rounded-md glass\" placeholder=\"Name\"> 
+            <input id=\"memail\" type=\"email\" class=\"p-3 rounded-md glass\" placeholder=\"Email\"> 
+            <div class=\"flex items-center gap-3\"><button class=\"px-4 py-2 rounded-full bg-amber-400 text-black\">Join now</button></div>
+          </form>
+        </div>
+      `);
+
+      qs('#modalSignup').addEventListener('submit', (ev)=>{
+        ev.preventDefault();
+        closeModal();
+        alert('Welcome! Check your inbox for a welcome brew.');
+      });
+    });
+
+    // Quick 'Buy' modal
+    qsa('.viewMore').forEach(btn => {
+      btn.addEventListener('click', (e)=>{
+        const product = btn.dataset.product || 'Aurora Roast';
+        openModal(`<div><h3 class=\"text-2xl font-bold\">${product}</h3><p class=\"mt-2\">Choose grind and quantity, then checkout securely.</p><div class=\"mt-4\"><label class=\"text-sm\">Grind</label><select class=\"w-full p-3 rounded-md glass\"><option>Whole Bean</option><option>Espresso</option><option>Filter</option></select><div class=\"mt-4 flex gap-3\"><button class=\"px-4 py-2 rounded-full bg-amber-400 text-black\">Add to cart</button><button class=\"px-4 py-2 rounded-full glass\" onclick=\"document.getElementById('modal').classList.add('hidden')\">Close</button></div></div></div>`);
+      });
+    });
+
+    // Add to cart interactions with tiny micro-animation
+    qsa('.addCart').forEach(btn => {
+      btn.addEventListener('click', ()=>{
+        btn.classList.add('scale-95');
+        setTimeout(()=> btn.classList.remove('scale-95'), 150);
+        // simulate toast
+        const t = document.createElement('div');
+        t.textContent = 'Added to cart';
+        t.className = 'fixed bottom-8 right-8 p-3 bg-amber-400 text-black rounded-lg shadow-lg';
+        document.body.appendChild(t);
+        setTimeout(()=> t.remove(), 1800);
+      });
+    });
+
+    // Signup form + progress bar gamification
+    qs('#signup').addEventListener('submit', (ev)=>{
+      ev.preventDefault();
+      const name = qs('#name').value.trim();
+      const email = qs('#email').value.trim();
+      if(!name || !email){
+        alert('Please provide name and email.');
+        return;
+      }
+      // fake progress increase
+      let progress = parseInt(localStorage.getItem('aurora-progress') || '0');
+      progress = Math.min(100, progress + 20);
+      localStorage.setItem('aurora-progress', String(progress));
+      qs('#progressBar').style.width = progress + '%';
+      qs('#progressText').textContent = progress + '%';
+      alert('Thanks! Welcome to the collective — check your email.');
+    });
+
+    // Persist progress on load
+    (function(){
+      const p = parseInt(localStorage.getItem('aurora-progress') || '0');
+      qs('#progressBar').style.width = p + '%';
+      qs('#progressText').textContent = p + '%';
+    })();
+
+    // Simple keyboard navigation: focus trap for modal
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+    });
+  </script>
+</body>
+</html>
